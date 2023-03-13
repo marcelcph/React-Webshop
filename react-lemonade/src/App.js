@@ -9,14 +9,14 @@ function App() {
 	const [data,setData] = useState([]);
 
 
-	const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?f=g';
+	const url = 'https://www.thecocktaildb.com/api/json/v1/1/search.php?s=lemonade';
 
 	const fetchCocktail = useCallback(()=> {
 		setLoading(true);
 
 		axios.get(url)
 		.then(res => {
-		  const data = res.data.drinks.slice(0, 24);
+		  const data = res.data.drinks.slice(0, 4);
 		  setData(data);
 		})
 		.catch(e => console.log(e))
@@ -42,8 +42,8 @@ function App() {
     </Navbar>
 
 	<div class="jumbotron">
-		<h1 class="display-3">Delicious drinks with a G</h1>
-		<p class="lead">Shots, Cocktail or beer? We got it with a G</p>
+		<h1 class="display-3">Delicious lemonade?</h1>
+		<p class="lead">We got it!</p>
 		<button class="btn btn-primary btn-lg">Learn More</button>
 	</div>
 			<div className="card-container">
@@ -53,7 +53,7 @@ function App() {
 			  <Card.Body>
 				<Card.Title>{cocktail.strDrink}</Card.Title>
 				<Card.Subtitle>{cocktail.strCategory}</Card.Subtitle>
-				<Card.Text>{cocktail.strGlass}</Card.Text>
+				<Card.Text>{cocktail.idDrink.substring(0, 2)} kr.</Card.Text>
 				<Button variant="primary">Add to cart</Button>
 			  </Card.Body>
 			</Card>
